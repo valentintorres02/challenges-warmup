@@ -12,7 +12,7 @@ function EditPost(props) {
 
   useEffect(() => {
     setBlogId(props.match.params.postId);
-    if (props.match.params.postId >= 100) {
+    if (props.match.params.postId > 100) {
       setErrorMessageDisplay('');
       setEditFormDisplay('none');
     } else {
@@ -80,7 +80,11 @@ EditPost.defaultProps = {
 };
 
 EditPost.propTypes = {
-  match: PropTypes.objectOf(PropTypes.object()),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      postId: PropTypes.string,
+    }),
+  }),
 };
 
 export default EditPost;
