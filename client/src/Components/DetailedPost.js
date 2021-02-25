@@ -10,7 +10,7 @@ function DetailedPost(props) {
 
   useEffect(() => {
     setBlogId(props.match.params.postId);
-    if (props.match.params.postId >= 100) {
+    if (props.match.params.postId > 100) {
       setErrorMessageDisplay('');
       setEditFormDisplay('none');
     } else {
@@ -44,7 +44,11 @@ DetailedPost.defaultProps = {
 
 DetailedPost.propTypes = {
   postId: PropTypes.number,
-  match: PropTypes.objectOf(PropTypes.object()),
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      postId: PropTypes.string,
+    }),
+  }),
 };
 
 export default DetailedPost;
