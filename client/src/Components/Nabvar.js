@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 function Nabvar() {
-    return (
-        <ul className="nav">
+  return (
+    <ul className="nav">
       <li className="nav-item">
         <a className="nav-link active" href="/">Home</a>
       </li>
@@ -13,7 +13,7 @@ function Nabvar() {
         <a className="nav-link" href="/create">Crear</a>
       </li>
     </ul>
-    )
+  );
 }
 
-export default Nabvar
+export default Nabvar;
