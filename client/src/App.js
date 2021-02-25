@@ -4,7 +4,10 @@ import Home from './Components/Home'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import Nabvar from './Components/Nabvar'
 import Post from './Components/Post';
-import DetailedPost from './DetailedPost';
+import DetailedPost from './Components/DetailedPost';
+import EditPost from './Components/EditPost';
+import Edit from './Components/Edit'
+import CreatePost from './Components/CreatePost';
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -36,6 +39,13 @@ function App() {
       )}
       />
       <Route path={`/posts/:postId`} component={DetailedPost} />
+      <Route path={`/edit/:postId`} component={EditPost} />
+      <Route exact path="/edit"
+      render={() => (
+        <Edit posts={posts}/>
+      )}
+      />
+      <Route path={'/create'} component={CreatePost} />
       </Router>
     </div>   
   );
