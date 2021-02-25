@@ -1,5 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import Axios from 'axios'
+import Home from './Components/Home'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
+import Nabvar from './Components/Nabvar'
+import Post from './Components/Post';
+import DetailedPost from './DetailedPost';
 
 function App() {
   const [posts, setPosts] = useState([])
@@ -17,7 +22,21 @@ function App() {
 
   return (
     <div>
-      Alkemy challenge individual
+      <Nabvar/>
+      <Router>
+        <Route
+        exact path="/"
+        render={() => (
+          <Home posts={posts} />
+        )}
+      />
+      <Route exact path="/detail"
+      render={() => (
+        <Post />
+      )}
+      />
+      <Route path={`/posts/:postId`} component={DetailedPost} />
+      </Router>
     </div>   
   );
 }
