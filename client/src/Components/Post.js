@@ -7,9 +7,10 @@ function Post({postId, postTitle}) {
   <div className="card-body">
     <h5 className="card-title">{postId}</h5>
     <p className="card-text">{postTitle}</p>
-    <a href="/edit" className="btn btn-warning" style={{marginRight: '5px'}}>Editar</a>
+    <a href={`/edit/${postId}`} className="btn btn-warning" style={{marginRight: '5px'}}>Editar</a>
     <a href={`/posts/${postId}`} onClick={() => {console.log(postId)}} className="btn btn-primary" style={{marginRight: '5px'}}>Ver detalle</a>
-    <a href="#" className="btn btn-danger" style={{marginRight: '5px'}}>Eliminar</a>
+    <a href="#"  onClick={() => {if(confirm(`Deseas borrar el post ID ${postId}?`)){console.log(`Post ${postId} eliminado.`)}}}
+    className="btn btn-danger" style={{marginRight: '5px'}}>Eliminar</a>
   </div>
 </div>
     )
