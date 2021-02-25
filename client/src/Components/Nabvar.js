@@ -9,6 +9,9 @@ function Nabvar() {
       <li className="nav-item">
         <a className="nav-link" href="/edit">Editar</a>
       </li>
+      <li className="nav-item">
+        <a className="nav-link" href="/create">Crear</a>
+      </li>
     </ul>
     )
 }
