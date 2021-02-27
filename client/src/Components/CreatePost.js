@@ -26,7 +26,7 @@ function CreatePost() {
               className="btn btn-primary"
               type="button"
               style={{ marginTop: '5px' }}
-              onClick={() => console.log('Post creado:', newTitle, newBody)}
+              onClick={() => ((newTitle, newBody) ? console.log('Post creado:', newTitle, newBody) : alert('Completa los campos'))}
             >
               Crear post
             </button>
