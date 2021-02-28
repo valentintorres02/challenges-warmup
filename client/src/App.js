@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './Components/Home';
+import Home from './Components/Routes/Home/Home';
 import Nabvar from './Components/Nabvar';
 import Post from './Components/Post';
 import DetailedPost from './Components/DetailedPost';
-import EditPost from './Components/EditPost';
-import Edit from './Components/Edit';
-import CreatePost from './Components/CreatePost';
+import EditPost from './Components/Routes/Edit/EditPost';
+import Edit from './Components/Routes/Edit/Edit';
+import Create from './Components/Routes/Create/Create';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -50,7 +50,7 @@ function App() {
             <Edit posts={posts} />
           )}
         />
-        <Route path="/create" component={CreatePost} />
+        <Route path="/create" component={Create} />
       </Router>
     </div>
   );
