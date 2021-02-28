@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './Create.css';
+import ValidateForm from '../../Validations/ValidateForm';
+import CreateNewTitle from './CreateNewTitle';
+import CreateNewBody from './CreateNewBody';
 
-function CreatePost() {
-  const [newTitle, setNewTitle] = useState('');
-  const [newBody, setNewBody] = useState('');
+function Create() {
+  const { newTitle, handleTitleChange } = CreateNewTitle();
+  const { newBody, handleBodyChange } = CreateNewBody();
   return (
     <div>
       <div>
@@ -10,23 +14,20 @@ function CreatePost() {
           <div className="card-body">
             <label htmlFor="title-input">Título:</label>
             <input
-              className="form-control"
-              style={{ margin: '5px' }}
+              className="form-control spaceOutElement"
               name="title-input"
-              onChange={(e) => setNewTitle(e.target.value)}
+              onChange={handleTitleChange}
             />
             <label htmlFor="body-input">Contenido:</label>
             <input
-              className="form-control"
-              style={{ margin: '5px' }}
+              className="form-control spaceOutElement"
               name="body-input"
-              onChange={(e) => setNewBody(e.target.value)}
+              onChange={handleBodyChange}
             />
             <button
-              className="btn btn-primary"
+              className="btn btn-primary spaceOutElement"
               type="button"
-              style={{ marginTop: '5px' }}
-              onClick={() => ((newTitle, newBody) ? console.log('Post creado:', newTitle, newBody) : alert('Completa los campos'))}
+              onClick={() => ValidateForm('crear', newTitle, newBody)}
             >
               Crear post
             </button>
@@ -37,4 +38,4 @@ function CreatePost() {
   );
 }
 
-export default CreatePost;
+export default Create;
