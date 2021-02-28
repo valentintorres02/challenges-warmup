@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import GetSelectedPostToEdit from './GetSelectedPostToEdit';
 
 function Edit({ posts }) {
-  const [selectedPostToEdit, setSelectedPostToEdit] = useState('');
+  const { selectedPostToEdit, handleSelectedPostToEdit } = GetSelectedPostToEdit();
 
   return (
     <div className="text-center">
@@ -12,9 +13,7 @@ function Edit({ posts }) {
         className="form-select"
         size={20}
         aria-label="size 3 select example"
-        onChange={(e) => {
-          setSelectedPostToEdit(e.target.value);
-        }}
+        onChange={handleSelectedPostToEdit}
       >
         {posts.map((post) => (
           <option value={`${post.id}`} key={post.id}>{post.title}</option>
