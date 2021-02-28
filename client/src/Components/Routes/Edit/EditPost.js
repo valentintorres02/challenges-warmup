@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
+import './EditPost.css';
+import ValidateForm from '../../Validations/ValidateForm';
 
 function EditPost(props) {
   const [blogId, setBlogId] = useState('');
   const [selectedPost, setSelectedPost] = useState([]);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedBody, setEditedBody] = useState('');
-  const [errorMessageDisplay, setErrorMessageDisplay] = useState('none');
+  const [errorMessageDisplay, setErrorMessageDisplay] = useState('');
   const [editFormDisplay, setEditFormDisplay] = useState('');
 
   useEffect(() => {
     setBlogId(props.match.params.postId);
     if (props.match.params.postId > 100) {
       setErrorMessageDisplay('');
-      setEditFormDisplay('none');
+      setEditFormDisplay('hidden');
     } else {
-      setErrorMessageDisplay('none');
+      setErrorMessageDisplay('hidden');
       setEditFormDisplay('');
     }
   }, []);
@@ -31,46 +33,38 @@ function EditPost(props) {
     setEditedBody(selectedPost.body);
   }, [selectedPost]);
 
-  const editPost = () => {
-    console.log('edited');
-  };
-
   return (
     <div>
       <div className="card text-center">
-        <p style={{ display: errorMessageDisplay }}>Post no encontrado.</p>
-        <div className="card-body" style={{ display: editFormDisplay }}>
+        <p className={errorMessageDisplay}>Post no encontrado.</p>
+        <div className={`card-body ${editFormDisplay}`}>
           <strong>{selectedPost.id}</strong>
           <br />
           <label htmlFor="title-input">Título:</label>
           <input
-            className="form-control"
+            className="form-control spaceOutElement"
             defaultValue={selectedPost.title}
-            style={{ margin: '5px' }}
             name="title-input"
             onChange={(e) => setEditedTitle(e.target.value)}
           />
           <label htmlFor="body-input">Contenido:</label>
           <input
-            className="form-control"
+            className="form-control spaceOutElement"
             defaultValue={selectedPost.body}
-            style={{ margin: '5px' }}
             name="body-input"
             onChange={(e) => setEditedBody(e.target.value)}
           />
           <button
-            className="btn btn-warning"
+            className="btn btn-warning spaceOutElementTop"
             type="button"
-            style={{ marginTop: '5px' }}
             onClick={() => {
-              editPost();
+              ValidateForm('edit', editedTitle, editedBody);
             }}
           >
             Confirmar
           </button>
         </div>
       </div>
-      {console.log(editedTitle, editedBody)}
     </div>
   );
 }
