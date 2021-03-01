@@ -1,27 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Axios from 'axios';
+import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Home from './Components/Routes/Home/Home';
+import Home from './Routes/Home/Home';
 import Nabvar from './Components/Nabvar';
 import Post from './Components/Post';
-import DetailedPost from './Components/DetailedPost';
-import EditPost from './Components/Routes/Edit/EditPost';
-import Edit from './Components/Routes/Edit/Edit';
-import Create from './Components/Routes/Create/Create';
+import DetailedPost from './Routes/DetailedPost/DetailedPost';
+import EditPost from './Routes/Edit/EditPost';
+import Edit from './Routes/Edit/Edit';
+import Create from './Routes/Create/Create';
+import FetchAppData from './FetchAppData';
 
 function App() {
-  const [posts, setPosts] = useState([]);
-
-  const fetchPosts = () => {
-    Axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then((response) => {
-        setPosts(response.data);
-      });
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, []);
+  const { posts } = FetchAppData();
 
   return (
     <div>
