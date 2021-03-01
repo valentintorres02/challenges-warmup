@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
 import './EditPost.css';
+import ChangeDisplay from '../DetailedPost/ChangeDisplay';
 import ValidateForm from '../../Validations/ValidateForm';
 
 function EditPost(props) {
@@ -9,17 +10,17 @@ function EditPost(props) {
   const [selectedPost, setSelectedPost] = useState([]);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedBody, setEditedBody] = useState('');
-  const [errorMessageDisplay, setErrorMessageDisplay] = useState('');
-  const [editFormDisplay, setEditFormDisplay] = useState('');
+  const {
+    errorMessageDisplay, editFormDisplay, makeErrorMessageVisible, makeErrorMessageInvisible,
+  } = ChangeDisplay();
 
   useEffect(() => {
     setBlogId(props.match.params.postId);
+    console.log(props);
     if (props.match.params.postId > 100) {
-      setErrorMessageDisplay('');
-      setEditFormDisplay('hidden');
+      makeErrorMessageVisible();
     } else {
-      setErrorMessageDisplay('hidden');
-      setEditFormDisplay('');
+      makeErrorMessageInvisible();
     }
   }, []);
 
