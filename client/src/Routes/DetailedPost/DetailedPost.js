@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import PropTypes from 'prop-types';
+import ChangeDisplay from './ChangeDisplay';
 
-function DetailedPost(props) {
+function DetailedPost({ match }) {
   const [blogId, setBlogId] = useState('');
   const [selectedPost, setSelectedPost] = useState([]);
-  const [errorMessageDisplay, setErrorMessageDisplay] = useState('none');
-  const [editFormDisplay, setEditFormDisplay] = useState('');
+  const {
+    errorMessageDisplay, editFormDisplay, makeErrorMessageVisible, makeErrorMessageInvisible,
+  } = ChangeDisplay();
 
   useEffect(() => {
-    setBlogId(props.match.params.postId);
-    if (props.match.params.postId > 100) {
-      setErrorMessageDisplay('');
-      setEditFormDisplay('none');
+    setBlogId(match.params.postId);
+    if (match.params.postId > 100) {
+      makeErrorMessageVisible();
     } else {
-      setErrorMessageDisplay('none');
-      setEditFormDisplay('');
+      makeErrorMessageInvisible();
     }
   }, []);
 
@@ -26,8 +26,8 @@ function DetailedPost(props) {
 
   return (
     <div className="card text-center">
-      <p style={{ display: errorMessageDisplay }}>Post no encontrado.</p>
-      <div className="card-body" style={{ display: editFormDisplay }}>
+      <p className={errorMessageDisplay}>Post no encontrado.</p>
+      <div className={`card-body ${editFormDisplay}`}>
         <h5 className="card-title">{selectedPost.title}</h5>
         <p className="card-text">{selectedPost.body}</p>
         <a href={`/edit/${blogId}`} className="btn btn-warning" style={{ marginRight: '5px' }}>Editar</a>
