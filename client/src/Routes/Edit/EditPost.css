@@ -1,0 +1,11 @@
+.hidden {
+    display: none;
+}
+
+.spaceOutElement {
+    margin: 5px;
+}
+
+.spaceOutElementTop {
+    margin-top: 5px;
+}
