@@ -1,2 +1,11 @@
 # challenges-warmup
- Challenges individuales de Warm Up de Alkemy - Javascript
+
+## Instructions
+
+To run this repository, you have to run
+
+### `npm install`
+
+And to run the local server:
+
+### `npm run start`
